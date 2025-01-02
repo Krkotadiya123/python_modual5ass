@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthify - Appointment</title>
+    <style>
+      /* General Reset */
+
+      /* Appointment Section */
+      .appointment-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px 20px;
+      }
+
+      .appointment-form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        color: #333;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .appointment-form h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        color: #00d1b2;
+      }
+
+      .appointment-form input,
+      .appointment-form textarea,
+      .appointment-form button {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .appointment-form textarea {
+        resize: none;
+      }
+
+      .appointment-form button {
+        background-color: #00d1b2;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .appointment-form button:hover {
+        background-color: #00bfa5;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    {% extends 'master.html ' %} {% block body %}
+
+    <!-- Appointment Section -->
+    <section class="appointment-section">
+      <div class="appointment-form">
+        <h2>Book Your Appointment</h2>
+        <form action="#" method="post">
+          {% csrf_token %}
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Full Name"
+            required
+          />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input
+            type="tel"
+            name="number"
+            placeholder="Your Phone Number"
+            required
+          />
+          <input type="tel" name="age" placeholder="age" required />
+          <input type="date" name="dob" required />
+          <textarea
+            name="mas"
+            rows="4"
+            placeholder="Your Message or Health Concern"
+            required
+          ></textarea>
+          <input type="text" name="Action" value="panding"   hidden></input>
+          <button type="submit">Book Appointment</button>
+          
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Healthify. All rights reserved.</p>
+    </footer>
+    {%endblock%}
+  </body>
+</html>

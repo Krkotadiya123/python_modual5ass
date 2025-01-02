@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .edit-container {
+        width: 450px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+
+      .edit-header {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #00d1b2;
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .form-group input[type="file"] {
+        padding: 3px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background: #00d1b2;
+        margin: 20px 0;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .submit-btn:hover {
+        background: #00bfa5;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="edit-container">
+      <div class="edit-header">Edit Profile</div>
+
+      <!-- Doctor Edit Form -->
+      <form id="doctorEditForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="role" value="doctor" hidden />
+        </div>
+        <div class="form-group">
+          <label for="doctorFullName">Full Name</label>
+          <input
+            type="text"
+            id="doctorFullName"
+            value="{{cu.fullname}}"
+            name="fullname"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="doctorEmail">Email</label>
+          <input
+            type="email"
+            id="doctorEmail"
+            name="email"
+            value="{{cu.email}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="doctorMobile">Mobile</label>
+          <input
+            type="number"
+            id="doctorMobile"
+            name="mobile"
+            value="{{cu.mobile}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="doctorSpecialization">Specialization</label>
+          <input
+            type="text"
+            id="doctorSpecialization"
+            name="specialization"
+            value="{{cu.specialization}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="doctorImage">Upload New Image</label>
+          <input
+            type="file"
+            id="doctorImage"
+            name="image"
+            value="{{cu.image}}"
+          />
+        </div>
+        <button type="submit" class="submit-btn">Save Changes</button>
+      </form>
+
+      <!-- Patient Edit Form -->
+      <form id="patientEditForm" method="post" class="hidden">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="role" value="patient" hidden />
+        </div>
+        <div class="form-group">
+          <label for="patientFullName">Full Name</label>
+          <input
+            type="text"
+            id="patientFullName"
+            name="fullname"
+            value="{{cu.fullname}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="patientEmail">Email</label>
+          <input
+            type="email"
+            id="patientEmail"
+            name="email"
+            value="{{cu.email}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="patientMobile">Mobile</label>
+          <input
+            type="number"
+            id="patientMobile"
+            name="mobile"
+            value="{{cu.mobile}}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="patientAge">Age</label>
+          <input type="number" id="patientAge" name="age" value="25" required />
+        </div>
+        <button type="submit" class="submit-btn">Save Changes</button>
+      </form>
+    </div>
+
+    <script>
+      // Toggle form visibility based on role
+      function toggleForm(role) {
+        document
+          .getElementById("doctorEditForm")
+          .classList.toggle("hidden", role !== "doctor");
+        document
+          .getElementById("patientEditForm")
+          .classList.toggle("hidden", role !== "patient");
+      }
+
+      // Simulate loading based on current user role
+      const currentUserRole = "doctor"; // Change to "patient" for testing
+      toggleForm(currentUserRole);
+    </script>
+  </body>
+</html>

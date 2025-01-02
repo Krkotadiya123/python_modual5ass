@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthify - OTP Verification</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: url("https://wallpaperaccess.com/full/5301521.jpg")
+          no-repeat center center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+      }
+
+      .container {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 40px;
+        border-radius: 10px;
+        text-align: center;
+        width: 400px;
+      }
+
+      .container h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+      .otp-input {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .otp-input input {
+        width: 50px;
+        padding: 15px;
+        font-size: 20px;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+      }
+
+      .otp-input input:focus {
+        outline: none;
+        border-color: #00d1b2;
+      }
+
+      .container p {
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #00d1b2;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .container button:hover {
+        background-color: #00bfa5;
+      }
+
+      .resend {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #ccc;
+      }
+
+      .resend a {
+        color: #00d1b2;
+        text-decoration: none;
+      }
+
+      .resend a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive design for mobile */
+      @media (max-width: 480px) {
+        .container {
+          width: 90%;
+        }
+
+        .otp-input input {
+          width: 40px;
+          padding: 10px;
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>OTP Verification</h1>
+      <p>
+        We have sent you an OTP code to your registered email or phone number.
+      </p>
+
+      <!-- OTP Input -->
+      <div class="otp-input">
+        <input type="text" maxlength="1" id="otp1" />
+        <input type="text" maxlength="1" id="otp2" />
+        <input type="text" maxlength="1" id="otp3" />
+        <input type="text" maxlength="1" id="otp4" />
+        <input type="text" maxlength="1" id="otp5" />
+        <input type="text" maxlength="1" id="otp6" />
+      </div>
+
+      <!-- Submit Button -->
+      <button onclick="submitOTP()">Verify OTP</button>
+
+      <!-- Resend OTP Link -->
+      <div class="resend">
+        <p>
+          Didn't receive the OTP?
+          <a href="javascript:void(0);" onclick="resendOTP()">Resend OTP</a>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Automatically focus on next OTP input when a digit is entered
+      document.querySelectorAll(".otp-input input").forEach((input, index) => {
+        input.addEventListener("input", function () {
+          if (this.value.length === 1 && index < 5) {
+            document.querySelectorAll(".otp-input input")[index + 1].focus();
+          }
+        });
+      });
+
+      // Function to verify OTP (for demonstration purposes, just check length)
+      function submitOTP() {
+        let otp = "";
+        document.querySelectorAll(".otp-input input").forEach((input) => {
+          otp += input.value;
+        });
+
+        if (otp.length === 6) {
+          alert("OTP Verified Successfully!");
+        } else {
+          alert("Please enter a valid 6-digit OTP.");
+        }
+      }
+
+      // Function to resend OTP (for demonstration purposes)
+      function resendOTP() {
+        alert("OTP has been resent to your email/phone number.");
+      }
+    </script>
+  </body>
+</html>

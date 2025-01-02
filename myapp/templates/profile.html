@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthify - Profile</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      /* Profile Section */
+      .profile-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-header h2 {
+        font-size: 36px;
+        color: #333;
+      }
+
+      .profile-image {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-image img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #00d1b2;
+      }
+
+      .profile-info {
+        margin-bottom: 20px;
+      }
+
+      .profile-info p {
+        font-size: 18px;
+        color: #555;
+        margin: 10px 0;
+      }
+
+      .profile-actions {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .action-btn {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        color: #fff;
+      }
+
+      .edit-btn {
+        background-color: #00d1b2;
+      }
+
+      .edit-btn:hover {
+        background-color: #00bfa5;
+      }
+
+      .update-btn {
+        background-color: #4caf50;
+      }
+
+      .update-btn:hover {
+        background-color: #43a047;
+      }
+
+      .delete-btn {
+        background-color: #f44336;
+      }
+
+      .delete-btn:hover {
+        background-color: #d32f2f;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #aaa;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% extends 'master.html' %} {% block body %}
+    <!-- Profile Section -->
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2>User Profile</h2>
+      </div>
+      <!-- Profile Image -->
+      {%if rol == "doctor" %}
+
+      <div class="profile-image">
+        <img src="{{f_data.image.url }}" alt="Profile Image" />
+      </div>
+      {%endif%}
+
+      <!-- Profile Information -->
+      <div class="profile-info">
+        <p><strong>Name:</strong>{{f_data.fullname}}</p>
+        <p><strong>Email:</strong>{{f_data.email}}</p>
+        <p><strong>Phone:</strong>{{f_data.mobile}}</p>
+        {%if rol == "doctor" %}
+        <p><strong>Specialization:</strong>{{f_data.specialization}}</p>
+        {% else %}
+        <p><strong>age:</strong>{{f_data.age}}</p>
+        {%endif%}
+      </div>
+
+      <!-- Profile Actions -->
+      <div class="profile-actions">
+        <a href="/updateprofile" class="action-btn edit-btn">Edit Profile</a>
+        <a href="/delete_acc/{{f_data.id}}" class="action-btn delete-btn"
+          >Delete Profile</a
+        >
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Healthify. All rights reserved.</p>
+    </footer>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Healthify - Home</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      /* Hero Section */
+      .hero {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+
+      .hero-content p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      .cta-btn {
+        padding: 10px 20px;
+        background-color: #00d1b2;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .cta-btn:hover {
+        background-color: #00bfa5;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 15px 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    {% extends 'master.html ' %} {% block body %}
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Your Health, Our Priority</h1>
+        <p>Bringing quality healthcare to your doorstep with expert care.</p>
+        <button class="cta-btn">Learn More</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Healthify. All rights reserved.</p>
+    </footer>
+    {%endblock%}
+  </body>
+</html>

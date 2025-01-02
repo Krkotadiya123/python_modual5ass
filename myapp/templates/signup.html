@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .signup-container {
+        width: 450px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+
+      .signup-header {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #00d1b2;
+        font-weight: bold;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .form-group input[type="file"] {
+        padding: 3px;
+      }
+
+      .role-selection {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .role-selection label {
+        font-weight: bold;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background: #00d1b2;
+        margin: 20px 0;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .submit-btn:hover {
+        background: #00bfa5;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-header">Sign Up</div>
+      <div class="role-selection">
+        <label>
+          <input
+            type="radio"
+            name="role"
+            value="doctor"
+            checked
+            onclick="toggleForm('doctor')"
+          />
+          Doctor
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="role"
+            value="patient"
+            onclick="toggleForm('patient')"
+          />
+          Patient
+        </label>
+      </div>
+
+      <!-- Doctor Form -->
+      <form id="doctorForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="role" value="doctor" hidden />
+        </div>
+        <div class="form-group">
+          <label for="doctorFullName">Full Name</label>
+          <input type="text" id="doctorFullName" name="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="doctorEmail">Email</label>
+          <input type="email" id="doctorEmail" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="doctorMobile">Mobile</label>
+          <input type="number" id="doctorMobile" name="mobile" required />
+        </div>
+        <div class="form-group">
+          <label for="doctorPassword">Password</label>
+          <input type="password" id="doctorPassword" name="password" required />
+        </div>
+        <div class="form-group">
+          <label for="doctorSpecialization">Specialization</label>
+          <input
+            type="text"
+            id="doctorSpecialization"
+            name="specialization"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="doctorImage">Upload Image</label>
+          <input type="file" id="doctorImage" name="image" />
+        </div>
+        <button type="submit" class="submit-btn">Sign Up</button>
+      </form>
+
+      <!-- Patient Form -->
+      <form id="patientForm" method="post" class="hidden">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" name="role" value="patient" hidden />
+        </div>
+        <div class="form-group">
+          <label for="patientFullName">Full Name</label>
+          <input type="text" id="patientFullName" name="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="patientEmail">Email</label>
+          <input type="email" id="patientEmail" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="patientMobile">Mobile</label>
+          <input type="number" id="patientMobile" name="mobile" required />
+        </div>
+        <div class="form-group">
+          <label for="patientPassword">Password</label>
+          <input
+            type="password"
+            id="patientPassword"
+            name="password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="patientAge">Age</label>
+          <input type="number" id="patientAge" name="age" min="0" required />
+        </div>
+        <button type="submit" class="submit-bxtn">Sign Up</button>
+      </form>
+
+      <a href="/sign_in" class="submit-btn">Sign in</a>
+    </div>
+
+    <script>
+      function toggleForm(role) {
+        document
+          .getElementById("doctorForm")
+          .classList.toggle("hidden", role !== "doctor");
+        document
+          .getElementById("patientForm")
+          .classList.toggle("hidden", role !== "patient");
+      }
+    </script>
+  </body>
+</html>
